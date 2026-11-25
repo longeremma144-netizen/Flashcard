@@ -1,66 +1,10 @@
-# Recall — your personal flashcard app
-
-No dependencies, subscriptions, build tools, or external libraries. This is a static HTML/CSS/JavaScript PWA. Two small starter decks are included. Import your full decks using the Import deck button.
-
-## 1. Run on your Mac
-
-1. Unzip Recall.zip. Open the Recall folder in VS Code (File > Open Folder).
-2. In VS Code choose Terminal > New Terminal. Run `python3 -m http.server 8000`.
-3. Open http://localhost:8000 in Safari or Chrome. Leave the terminal running while testing. Ctrl+C stops it.
-
-If Python is not installed, install Python 3 from python.org, or use the VS Code Live Server extension. No npm install is required. Opening index.html directly may show the app, but reliable local storage and offline installation require a proper web origin.
-
-## 2. Install on iPad (free HTTPS hosting)
-
-One option is GitHub Pages. Follow the account/age requirements of the service and ask a parent to help if necessary. Do not upload your personal decks or backups to a public repository.
-
-1. Sign in to github.com and create a new public repository named `recall`.
-2. Upload the **contents** of the Recall folder (index.html, style.css, app.js, manifest.json, sw.js and both icons). The files must be at the root of the repository, not inside another folder. README.md is optional.
-3. Commit changes. Open Settings > Pages. Select Deploy from a branch, main, / (root), then Save.
-4. When Pages displays the published address, open that address on iPad Safari. It normally looks like `https://YOUR-USERNAME.github.io/recall/`.
-5. Tap Share > Add to Home Screen (you may have to scroll the share menu). Enable Open as Web App if offered, then Add.
-6. Launch the installed app while online. In Settings check that the offline cache is installed. Test by turning on airplane mode, closing and reopening the app. Turn airplane mode off afterwards.
-
-Mac localhost and the hosted iPad app are separate storage locations. If you have already made cards on the Mac, export a complete backup from Settings and restore that file on the installed iPad app. Browser and home-screen storage may also be separate on some iPadOS versions.
-
-## 3. Everyday use
-
-- **Import:** paste a tab-separated deck, one front/back pair per line. Preview, remove incorrect cards, choose a destination, then import. Exact duplicates are skipped. Other accepted separators are spaced `::`, `|`, `—`, and `-`.
-- **Folders:** use names such as `Speech/Impromptu` and `Debate/IR`; selecting a parent includes its descendants. Edit a deck to rename it or move it.
-- **Review:** open a deck, select mode, direction, due/all and session size. Tap a flashcard to reveal. Swipe left for Again or right for Good on a revealed flashcard. Written recall is self-graded to accommodate paraphrases; multiple choice generates distractors from the same deck, with up to four options.
-- **Keyboard:** Space flips flashcards; 1/2/3/4 = Again/Hard/Good/Easy. Left/right arrow = Again/Good on a revealed flashcard. Shortcuts are disabled while typing.
-- **Spaced repetition:** a simple interval-based algorithm (not FSRS or Anki SM-2). Again schedules 10 minutes and up to two immediate retries in the current session; Hard uses at least one day or 1.2× prior interval; Good at least one day or 2.2×; Easy at least four days or 3.2×. Intervals cap at 365 days. Both directions share the same schedule. Practising All cards updates scheduling too.
-- **Progress:** Good and Easy count as successful recall, Hard and Again do not. Mastery is a scheduling proxy (21+ day interval), not a guarantee of memorization. All attempts including retries are counted.
-- **Backup:** Settings > Export complete backup saves decks, schedules, themes and review history as JSON. Restore replaces the current library after confirmation. Individual decks can be exported as TSV (without progress, multiline content flattened).
-
-## 4. Magic import
-
-Offline magic import recognizes simple definitions such as `Cognitive dissonance: discomfort from conflicting beliefs` or `Photosynthesis is the process ...`. It is rule-based, not a language model; check all previews and skipped lines.
-
-For truly unstructured notes, use the AI magic import section: paste notes, click Copy AI prompt + notes, open ChatGPT, paste and send the prompt. Copy the returned tab-separated cards back into Recall and preview. This workflow is online, uses your existing ChatGPT access, and has no embedded key or automated API call. Do not send confidential notes unless appropriate. An integrated one-click AI backend is not included; putting a secret API key in public JavaScript would expose it.
-
-## 5. Files and customization
-
-- index.html: shell and navigation
-- style.css: responsive layout, colors, dark mode
-- app.js: deck editing, import, study sessions, scheduling, statistics and backups
-- manifest.json: install metadata
-- sw.js: offline asset cache
-- icon-192.png / icon-512.png: app icons
-
-To change colors, edit CSS variables at the top of style.css. When publishing changes, increment `recall-v1` in sw.js (e.g. `recall-v2`) so the installed app refreshes its cache. Close all app tabs/windows and reopen online to activate the update.
-
-## 6. Important limitations
-
-Data is saved in localStorage, which has a browser-dependent quota (often around 5 MB) and can be cleared or evicted. Keep regular JSON backups in Files/iCloud Drive. There is no cloud synchronization, encryption beyond your device/browser protections, or account system. A public hosting repository exposes the app source, not locally entered cards. Battery use has not been benchmarked. JavaScript syntax was checked; browser execution and iPad installation require testing on your device because the build environment blocked browser navigation.
-
-## Version 2 update
-Back up your existing data in Settings before updating. Upload the files directly to the same repository root, replacing the previous versions. The storage key and backup format are unchanged. Multiple choice now advances with Next, with automatic Good/Again ratings. New features include fill-in-the-blank, missed-card practice, daily goals and a speech/debate practice timer. No accounts or cloud sync. AI import remains ChatGPT-assisted, not automated. Browser/iPad testing has not been completed.
-
-## Version 3 upgrade
-Export a complete backup in Settings before updating. Upload all eight files into the existing repository root. Keep the same website URL. After deployment succeeds, open the existing website online, close all Recall tabs/windows (including the home screen app), then reopen. If necessary open `index.html?v=4` once online. The new service worker uses network-first requests and versioned scripts/styles; it preserves local storage. The old worker may require one extra close/reopen to release its cache. Do not erase website data without a backup.
-
-Debate & Speaking now includes three-choice impromptu prompts, debate drills (mechanism, weighing, framing, rebuttal, whip, constructive), difficulty, side, pause/reset timers and self-checklists. The AI tutor prepares a prompt to copy into ChatGPT; it is not an embedded AI service. Quotes has a random picker, search and copy. The original local storage key is unchanged.
-
-## Mental Math (v4)
-Choose Mental Math in the navigation. Select any of 21 categories, a difficulty, a question limit and an optional timer. Type answers (fractions such as 3/4 are accepted). Review feedback and retry mistakes. All attempts are stored locally with the existing Recall data and included in complete backups. The AI tutor prepares a prompt from recent mistakes for manual use in ChatGPT. No automatic AI connection.
+# Recall v6 Community Edition
+No paid AI or Edge Function is needed. Existing v5 database setup and Auth settings remain useful.
+1. In Supabase SQL Editor create a new snippet and run backend/community.sql. If you did not already run the v5 setup, run backend/setup.sql first.
+2. In Supabase project Settings > API Keys (or Connect), copy the project URL and publishable key (legacy anon key also works). Edit config.js placeholders. Never use a secret or service-role key.
+3. Export your current app backup. Upload root app files (index.html, app.js, style.css, config.js, manifest.json, sw.js, both icons, README.md) to the same GitHub Pages repository. No backend files needed on GitHub.
+4. After successful deployment open index.html?v=6. If the old app remains, try a private tab first and export existing backups before clearing any data.
+5. Account > Create account, verify email, sign in manually. Supabase default email delivery may not support external friends; use a suitable SMTP service or dashboard-managed test accounts with consent. Sessions are in memory; sign in after closing. Cloud backups are manual and replace local account data on restore. Copy guest library only if you want to replace your account library. Export backups regularly.
+6. Leaderboard > choose a nickname, Create group, copy code privately to friends. Friends sign in, enter their nickname and invite code, Join group. Publish my total shares this device's flashcard review plus mental math history count. The server retains the highest published total within the group. Not tamper-proof; not a sum across devices. Leave group removes your entry. Do not share real names or invite codes publicly. No messaging or public profiles.
+7. Deck sharing: open deck, Export TSV, send file privately, friend pastes contents into Import deck. No online shared deck catalog. Tutors use optional copy/paste into ChatGPT; no automated API calls.
+8. Test with two verified users: private backups, group isolation, joining, publishing and leaving, offline study, then review privacy and service eligibility with a parent/guardian before sharing. No live Supabase or physical iPad testing was performed.

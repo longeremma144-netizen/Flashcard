@@ -1,5 +1,5 @@
-const CACHE='recall-v4';
-const ASSETS=['./','./index.html','./style.css?v=4','./app.js?v=4','./manifest.json','./icon-192.png','./icon-512.png'];
+const CACHE='recall-v6';
+const ASSETS=['./','./index.html','./style.css?v=6','./app.js?v=6','./config.js?v=6','./manifest.json','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',e=>e.waitUntil((async()=>{const c=await caches.open(CACHE);await c.addAll(ASSETS.map(u=>new Request(u,{cache:'reload'})));await self.skipWaiting()})()));
 self.addEventListener('activate',e=>e.waitUntil((async()=>{await Promise.all((await caches.keys()).filter(k=>k.startsWith('recall-')&&k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim()})()));
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||new URL(e.request.url).origin!==self.location.origin)return;e.respondWith((async()=>{const c=await caches.open(CACHE);try{const r=await fetch(e.request,{cache:'no-cache'});if(r.ok){if(e.request.mode==='navigate')await c.put('./index.html',r.clone());else if(ASSETS.some(a=>new URL(a,self.registration.scope).href===e.request.url))await c.put(e.request,r.clone());return r}if(e.request.mode!=='navigate')return r}catch{}return (await c.match(e.request))||(e.request.mode==='navigate'?await c.match('./index.html'):undefined)||Response.error()})())});
