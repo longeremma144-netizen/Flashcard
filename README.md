@@ -56,3 +56,11 @@ Data is saved in localStorage, which has a browser-dependent quota (often around
 
 ## Version 2 update
 Back up your existing data in Settings before updating. Upload the files directly to the same repository root, replacing the previous versions. The storage key and backup format are unchanged. Multiple choice now advances with Next, with automatic Good/Again ratings. New features include fill-in-the-blank, missed-card practice, daily goals and a speech/debate practice timer. No accounts or cloud sync. AI import remains ChatGPT-assisted, not automated. Browser/iPad testing has not been completed.
+
+## Version 3 upgrade
+Export a complete backup in Settings before updating. Upload all eight files into the existing repository root. Keep the same website URL. After deployment succeeds, open the existing website online, close all Recall tabs/windows (including the home screen app), then reopen. If necessary open `index.html?v=4` once online. The new service worker uses network-first requests and versioned scripts/styles; it preserves local storage. The old worker may require one extra close/reopen to release its cache. Do not erase website data without a backup.
+
+Debate & Speaking now includes three-choice impromptu prompts, debate drills (mechanism, weighing, framing, rebuttal, whip, constructive), difficulty, side, pause/reset timers and self-checklists. The AI tutor prepares a prompt to copy into ChatGPT; it is not an embedded AI service. Quotes has a random picker, search and copy. The original local storage key is unchanged.
+
+## Mental Math (v4)
+Choose Mental Math in the navigation. Select any of 21 categories, a difficulty, a question limit and an optional timer. Type answers (fractions such as 3/4 are accepted). Review feedback and retry mistakes. All attempts are stored locally with the existing Recall data and included in complete backups. The AI tutor prepares a prompt from recent mistakes for manual use in ChatGPT. No automatic AI connection.
