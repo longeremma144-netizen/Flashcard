@@ -53,3 +53,6 @@ To change colors, edit CSS variables at the top of style.css. When publishing ch
 ## 6. Important limitations
 
 Data is saved in localStorage, which has a browser-dependent quota (often around 5 MB) and can be cleared or evicted. Keep regular JSON backups in Files/iCloud Drive. There is no cloud synchronization, encryption beyond your device/browser protections, or account system. A public hosting repository exposes the app source, not locally entered cards. Battery use has not been benchmarked. JavaScript syntax was checked; browser execution and iPad installation require testing on your device because the build environment blocked browser navigation.
+
+## Version 2 update
+Back up your existing data in Settings before updating. Upload the files directly to the same repository root, replacing the previous versions. The storage key and backup format are unchanged. Multiple choice now advances with Next, with automatic Good/Again ratings. New features include fill-in-the-blank, missed-card practice, daily goals and a speech/debate practice timer. No accounts or cloud sync. AI import remains ChatGPT-assisted, not automated. Browser/iPad testing has not been completed.
