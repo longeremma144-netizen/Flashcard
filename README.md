@@ -1,10 +1,8 @@
-# Recall v6 Community Edition
-No paid AI or Edge Function is needed. Existing v5 database setup and Auth settings remain useful.
-1. In Supabase SQL Editor create a new snippet and run backend/community.sql. If you did not already run the v5 setup, run backend/setup.sql first.
-2. In Supabase project Settings > API Keys (or Connect), copy the project URL and publishable key (legacy anon key also works). Edit config.js placeholders. Never use a secret or service-role key.
-3. Export your current app backup. Upload root app files (index.html, app.js, style.css, config.js, manifest.json, sw.js, both icons, README.md) to the same GitHub Pages repository. No backend files needed on GitHub.
-4. After successful deployment open index.html?v=6. If the old app remains, try a private tab first and export existing backups before clearing any data.
-5. Account > Create account, verify email, sign in manually. Supabase default email delivery may not support external friends; use a suitable SMTP service or dashboard-managed test accounts with consent. Sessions are in memory; sign in after closing. Cloud backups are manual and replace local account data on restore. Copy guest library only if you want to replace your account library. Export backups regularly.
-6. Leaderboard > choose a nickname, Create group, copy code privately to friends. Friends sign in, enter their nickname and invite code, Join group. Publish my total shares this device's flashcard review plus mental math history count. The server retains the highest published total within the group. Not tamper-proof; not a sum across devices. Leave group removes your entry. Do not share real names or invite codes publicly. No messaging or public profiles.
-7. Deck sharing: open deck, Export TSV, send file privately, friend pastes contents into Import deck. No online shared deck catalog. Tutors use optional copy/paste into ChatGPT; no automated API calls.
-8. Test with two verified users: private backups, group isolation, joining, publishing and leaving, offline study, then review privacy and service eligibility with a parent/guardian before sharing. No live Supabase or physical iPad testing was performed.
+# Recall v7 — Personal Edition
+
+No accounts, cloud database or paid AI. All v4 study tools remain. Upload index.html, app.js, style.css, sw.js, manifest.json and both icons to your existing repository root. Open index.html?v=7 in your usual browser after deployment. Back up any existing libraries first; do not clear site data.
+
+## Recovering v6 libraries
+Open Settings > Recover previous account library. Select the library by its card/review counts. Recovery replaces the current personal library, preserves the original account copy, and saves the previous personal library under a recovery key. If no library appears, try the original browser or restore a JSON backup. This cannot recover data already removed by the browser.
+
+Data is saved under recall-data-v1. Local storage is browser/device specific; private browsing and installed PWAs can have separate storage. Export regular backups.
